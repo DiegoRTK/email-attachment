@@ -26,8 +26,8 @@ router.post('/upload', upload.single('email'), async (req, res) => {
         jsonData.from = jsonData.from.value
         res.status(200).json(jsonData)
     } catch (error) {
-        console.error('Error parsing email:', error)
-        res.status(500).send('Internal Server Error: ' + error.message)
+        console.error('Error:', error)
+        res.status(400).send(error.message)
     }
 })
 
