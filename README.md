@@ -20,7 +20,8 @@ To run the production server, execute `npm start`. The service will be exposed a
 To utilize this project, follow these steps:
 - Download an email following this [Google guide](https://support.google.com/mail/answer/9261412?hl=en).
 - Attach the EML file using form-data. If you are using a Developer's Platform API like Postman, navigate to Body, then click on the "form-data" radio button. For the key, set it as "email" and upload your EML file.
-- Once everything is set up, you can use __CUSTOM_URL__/email/upload. For example, http://localhost:3000/email/upload.
+- Once everything is set up, you can use __CUSTOM_URL__/email/upload. For example, http://localhost:3000/email/upload/:headers.
+- There's a request URL parameter called `headers`; you can set it to `false` or `true`. If it's set to `true`, headers will be shown; otherwise, they will not.
 - Configure a POST request.
 - No authentication headers are needed.
 - Send the request, and you will receive a JSON with all extracted and formatted data.

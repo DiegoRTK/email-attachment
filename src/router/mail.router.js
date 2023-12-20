@@ -6,14 +6,17 @@ const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
 const router = express.Router()
 
-router.post('/upload', upload.single('email'), async (req, res) => {
+router.post('/upload/:headers', upload.single('email'), async (req, res) => {
+    const { headers } = req.body
     const emailData = req.file.buffer
     const jsonData = {}
 
     try {
         const mailObject = await simpleParser(emailData)
-        delete mailObject.headerLines
-        delete mailObject.headers
+        if (!headers) {
+            delete mailObject.headerLines
+            delete mailObject.headers
+        }
         Object.assign(jsonData, mailObject)
         if (mailObject.attachments && mailObject.attachments.length > 0) {
             jsonData.attachments = mailObject.attachments.map(attachment => ({
