@@ -14,7 +14,6 @@ router.post('/upload', upload.single('email'), async (req, res) => {
         const mailObject = await simpleParser(emailData)
         delete mailObject.headerLines
         delete mailObject.headers
-        delete mailObject.html
         Object.assign(jsonData, mailObject)
         if (mailObject.attachments && mailObject.attachments.length > 0) {
             jsonData.attachments = mailObject.attachments.map(attachment => ({
